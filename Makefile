@@ -1,5 +1,5 @@
 CC = gcc
-all_execs = reverselist reverselist-clang arraymanipulation copy
+all_execs = reverselist reverselist-clang arraymanipulation copy declarearray nofrees
 FLAGS = -g -Wall -Werror
 
 all : $(all_execs)
