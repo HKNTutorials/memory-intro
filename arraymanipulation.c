@@ -58,7 +58,7 @@ int main(int argv, char* argc[])
     print_list(&the_list);
 
     int new_size;
-    int old_size = 10;
+    int old_size;
     do {
         printf("What should we resize the list to? (enter a negative value to exit)\n");
         scanf("%d", &new_size);
