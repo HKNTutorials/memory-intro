@@ -1,5 +1,5 @@
 CC = gcc
-all_execs = reverselist reverselist-clang
+all_execs = reverselist reverselist-clang arraymanipulation
 FLAGS = -g -Wall -Werror
 
 all : $(all_execs)
