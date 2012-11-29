@@ -20,7 +20,7 @@ void fill_image(image *img, int height, int width) {
 	if (img == NULL) {
 		return;
 	}
-	img->data = (int*) malloc(height * width * sizeof(unsigned char));
+	img->data = (int*) malloc(height * width * sizeof(int));
 	if (img->data == NULL) {
 		return;
 	}
