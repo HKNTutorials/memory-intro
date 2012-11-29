@@ -7,7 +7,7 @@ typedef struct {
 
 typedef struct {
 	int width, height;
-	unsigned char* data;
+	int* data;
 	person* photographer;
 } image;
 
@@ -20,7 +20,7 @@ void fill_image(image *img, int height, int width) {
 	if (img == NULL) {
 		return;
 	}
-	img->data = (unsigned char*) malloc(height * width * sizeof(unsigned char));
+	img->data = (int*) malloc(height * width * sizeof(unsigned char));
 	if (img->data == NULL) {
 		return;
 	}
@@ -30,14 +30,14 @@ void fill_image(image *img, int height, int width) {
 	for (y = 0; y < img->height; y++) {
 		for (x = 0; x < img->width; x++) {
 			int loc = y * img->width + x;
-			img->data[loc] = (char) (x * y % 256);
+			img->data[loc] = (x + y) % 256;
 		}
 	}
 }
 
 int main() {
 	image* img = (image*) malloc(sizeof(image));
-	fill_image(img, 100, 100);
+	fill_image(img, 5, 5);
 	person* p = (person*) malloc(sizeof(person));
 	fill_person(p);
 	img->photographer = p;
