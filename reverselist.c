@@ -27,11 +27,11 @@ void* make_linked_list(int* array, int length)
     {
         next_node->element = array[i];
         if (i == length)
-		{
+        {
             next_node->next = NULL;
-		}
+        }
         else
-		{
+        {
             next_node->next = (list_node_t*) malloc(sizeof(list_node_t));
             next_node = next_node->next;
         }
@@ -49,8 +49,8 @@ void* make_linked_list(int* array, int length)
 list_node_t* reverse_linked_list(list_node_t* head)
 {
     list_node_t *last_node;
-	list_node_t *curr_node;
-	list_node_t *new_next_node;
+    list_node_t *curr_node;
+    list_node_t *new_next_node;
 
     if (head == NULL)
         return NULL;
@@ -58,7 +58,7 @@ list_node_t* reverse_linked_list(list_node_t* head)
     last_node = head;
     curr_node = head->next;
     last_node->next = NULL;
-    
+
     while (curr_node->next != NULL)
     {
         new_next_node = curr_node->next;
@@ -93,15 +93,15 @@ void print_linked_list(list_node_t* head)
  */
 void free_linked_list(list_node_t* head)
 {
-	list_node_t* curr_node = head;
+    list_node_t* curr_node = head;
     list_node_t* next_node = head;
 
     while (curr_node != NULL)
     {
-		// get the next node before free'ing
-		next_node = curr_node->next;
+        // get the next node before free'ing
+        next_node = curr_node->next;
         free(curr_node);
-		curr_node = next_node;
+        curr_node = next_node;
     }
 }
 
@@ -109,7 +109,7 @@ int main()
 {
     int myints[] = {3, 56, 2341, 90, 275, -24, 32, 64, 77, -125};
     int numints = 10;
-    
+
     list_node_t* head = make_linked_list(myints, numints);
     printf("original:\n");
     print_linked_list(head);
