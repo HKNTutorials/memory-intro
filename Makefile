@@ -1,5 +1,5 @@
 CC = gcc
-all_execs = reverselist arraymanipulation copy declarearray nofrees wc simpleexample
+all_execs = reverselist arraymanipulation copy declarearray nofrees wc simpleexample global
 FLAGS = -g -Wall -Werror
 
 all : $(all_execs)
