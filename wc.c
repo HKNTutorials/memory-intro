@@ -26,10 +26,14 @@ int main() {
 		"it  must have something to do with whitespace   ",
 		"word",
 		"a couple words",
-		"way   too many    spaces between\nwords",
+		"way   too many    spaces between words",
+		"this uses\nseveral newline\nseparators and not\nspaces",
 		"On a bright summer day Princess starburst walked over to Storybelle to show her her pink star-shaped medallion with a yellow jewel and said \"never gonna say goodbye, never gonna tell a lie and hurt you\"",
 		};
 	int i;
+	// This sizeof only works because sentences is a static array. This for loop
+	// construct is not buggy and correctly iterates over the sentences using
+	// sentences[i].
 	for (i = 0; i < sizeof(sentences)/sizeof(char*); i++) {
 		printf("%s: %d\n", sentences[i], wordcount(sentences[i]));
 	}
