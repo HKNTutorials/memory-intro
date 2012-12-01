@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// A simple struct the represents a node of a linked list.
 typedef struct list_node
 {
     int element;
@@ -18,14 +19,14 @@ typedef struct list_node
  */
 void* make_linked_list(int* array, int length)
 {
-    list_node_t* head = malloc( sizeof(list_node_t) );
+    list_node_t* head = (list_node_t *) malloc(sizeof(list_node_t));
     list_node_t* next_node = head;
     int i;
 
-    for (i=0; i < length; i++)
+    for (i = 0; i < length; i++)
     {
         next_node->element = array[i];
-        if (i != length-1)
+        if (i != length - 1)
         {
             next_node->next = (list_node_t*) malloc(sizeof(list_node_t));
             next_node = next_node->next;
@@ -37,9 +38,17 @@ void* make_linked_list(int* array, int length)
     return head;
 }
 
+/**
+ * Reverse a linked list, returning a pointer to the new head node.
+ *
+ * @param head the head of the list to reverse
+ * @return the new head node
+ */
 list_node_t* reverse_linked_list(list_node_t* head)
 {
-    list_node_t *last_node, *next_node, *new_next_node;
+    list_node_t *last_node;
+	list_node_t *next_node;
+	list_node_t *new_next_node;
 
     if (head == NULL)
         return NULL;
@@ -60,12 +69,15 @@ list_node_t* reverse_linked_list(list_node_t* head)
     return last_node;
 }
 
+/**
+ * Print out a linked list node-by-node.
+ */
 void print_linked_list(list_node_t* head)
 {
     list_node_t* next_node = head;
-    int i;
 
-    for (i=0; next_node != NULL; i++)
+    int i;
+    for (i = 0; next_node != NULL; i++)
     {
         printf("Element #%d: %d\n", i, next_node->element);
         next_node = next_node->next;
@@ -79,13 +91,15 @@ void print_linked_list(list_node_t* head)
  */
 void free_linked_list(list_node_t* head)
 {
-    list_node_t* next_node = head; list_node_t* temp = next_node;
+	list_node_t* curr_node = head;
+    list_node_t* next_node = head;
 
-    while (next_node != NULL)
+    while (curr_node != NULL)
     {
-        temp = next_node;
-        next_node = next_node->next;
-        free(temp);
+		// get the next node before free'ing
+		next_node = curr_node->next;
+        free(curr_node);
+		curr_node = next_node;
     }
 }
 
