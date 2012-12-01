@@ -21,18 +21,20 @@ void* make_linked_list(int* array, int length)
 {
     list_node_t* head = (list_node_t *) malloc(sizeof(list_node_t));
     list_node_t* next_node = head;
-    int i;
 
+    int i;
     for (i = 0; i < length; i++)
     {
         next_node->element = array[i];
-        if (i != length - 1)
-        {
+        if (i == length)
+		{
+            next_node->next = NULL;
+		}
+        else
+		{
             next_node->next = (list_node_t*) malloc(sizeof(list_node_t));
             next_node = next_node->next;
         }
-        else
-            next_node->next = NULL;
     }
 
     return head;
@@ -47,23 +49,23 @@ void* make_linked_list(int* array, int length)
 list_node_t* reverse_linked_list(list_node_t* head)
 {
     list_node_t *last_node;
-	list_node_t *next_node;
+	list_node_t *curr_node;
 	list_node_t *new_next_node;
 
     if (head == NULL)
         return NULL;
 
     last_node = head;
-    next_node = head->next;
-    head->next = NULL;
+    curr_node = head->next;
+    last_node->next = NULL;
     
-    while (last_node != NULL)
+    while (curr_node->next != NULL)
     {
-        new_next_node = next_node->next;
-        next_node->next = last_node;
+        new_next_node = curr_node->next;
+        curr_node->next = last_node;
 
-        last_node = next_node;
-        next_node = new_next_node;
+        last_node = curr_node;
+        curr_node = new_next_node;
     }
 
     return last_node;
