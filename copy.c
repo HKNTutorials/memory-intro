@@ -50,14 +50,16 @@ sponsorships * make_day(char * day, char letter, int number) {
     sponsorships * spons;
     spons = malloc( sizeof(sponsorships) );
 
-    spons->day = day;
+    spons->day = malloc( sizeof(char) * (strlen(day)+1) );
+    strcpy(spons->day, day);
+
     spons->letter = letter;
     spons->number = number;
 
     return spons;
 }
 
-/* copies the sponsorship data from one day to another */
+/* copies the sponsorship data from one day into an empty string */
 void copy_struct(sponsorships * source, sponsorships * dest) {
     dest->day = source->day;
     dest->letter = source->letter;
