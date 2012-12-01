@@ -8,7 +8,7 @@ typedef struct sponsorships {
     int number;
 } sponsorships;
 
-sponsorships * make_day(char * day, char letter, int number);
+sponsorships * init_day(void);
 void print_struct(sponsorships * cur_spons);
 void copy_struct(sponsorships * source, sponsorships * dest);
 void destroy(sponsorships * source);
@@ -16,51 +16,34 @@ void destroy(sponsorships * source);
 /**
  * Print out Sesame Street letters and numbers of the day, making
  * sure to delete your memory when you're done with it.
+ *
+ * this code is OK
  */
 int main() {
-    sponsorships *mon, *tues, *wed, *thurs, *fri;
+    sponsorships *temp_day, *today;
+    temp_day = init_day();
+    today = init_day();
 
-    mon = make_day("monday", 'g', 108);
-    tues = malloc( sizeof(sponsorships) );  /* allocate space for tuesday */
-    copy_struct(mon, tues);
+    printf("day letter number: ");
+    scanf("%s %c %d", temp_day->day, &(temp_day->letter), &(temp_day->number));
 
-    print_struct(mon);
-    destroy(mon);
+    copy_struct(today, temp_day);
+    destroy(temp_day);
 
-    print_struct(tues);
-    destroy(tues);
-
-    wed = make_day("wednesday", 'c', 6);
-    thurs = make_day("thursday", 'z', 7);
-    fri = make_day("friday", 'u', 300);
-
-    print_struct(wed);
-    print_struct(thurs);
-    print_struct(fri);
-
-    destroy(thurs);
-    destroy(wed);
-    destroy(fri);
+    print_struct(today);
+    destroy(today);
 
     return 0;
 }
 
-/* allocates and populates a sponsorships structure and returns a pointer to it */
-sponsorships * make_day(char * day, char letter, int number) {
-    sponsorships * spons;
-    spons = malloc( sizeof(sponsorships) );
-
-    spons->day = malloc( sizeof(char) * (strlen(day)+1) );
-    strcpy(spons->day, day);
-
-    spons->letter = letter;
-    spons->number = number;
-
-    return spons;
+sponsorships * init_day() {
+    sponsorships * retval;
+    retval = malloc( sizeof(sponsorships) );
+    retval->day = malloc( sizeof(char)*15 );
+    return retval;
 }
 
-/* copies the sponsorship data from one day into an empty string */
-void copy_struct(sponsorships * source, sponsorships * dest) {
+void copy_struct(sponsorships * dest, sponsorships * source) {
     dest->day = source->day;
     dest->letter = source->letter;
     dest->number = source->number;
