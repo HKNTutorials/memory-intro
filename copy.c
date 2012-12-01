@@ -1,65 +1,76 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-typedef struct object {
-    char * letter;
+typedef struct sponsorships {
+    char * day;
+    char letter;
     int number;
-} object;
+} sponsorships;
 
-void printobj(object * curobj);
-void copy(object * source, object * dest);
-void destroy(object * source);
+sponsorships * make_day(char * day, char letter, int number);
+void print_struct(sponsorships * cur_spons);
+void copy_struct(sponsorships * source, sponsorships * dest);
+void destroy(sponsorships * source);
 
+/**
+ * Print out Sesame Street letters and numbers of the day, making
+ * sure to delete your memory when you're done with it.
+ */
 int main() {
-    // Create object
-    object * mon = malloc( sizeof(object) );
-    char * letter = "g";
-    mon->letter = malloc( sizeof(char) );
-    *(mon->letter) = *letter;
-    mon->number = 108;
-    printf("monday sponsored by: "); printobj(mon);
-    
-    // Copy into new object
-    object * tues = malloc( sizeof(object) );
-    copy(mon, tues);
+    sponsorships *mon, *tues, *wed, *thurs, *fri;
 
-    // Destroy old object
+    mon = make_day("monday", 'g', 108);
+    tues = malloc( sizeof(sponsorships) );  /* allocate space for tuesday */
+    copy_struct(mon, tues);
+
+    print_struct(mon);
     destroy(mon);
 
-    printf("tuesday sponsored by: "); printobj(tues);
+    print_struct(tues);
     destroy(tues);
 
-    object * wed = malloc( sizeof(object) );
-    letter = "c";
-    wed->letter = malloc( sizeof(char) );
-    *(wed->letter) = *letter;
-    wed->number = 6;
+    wed = make_day("wednesday", 'c', 6);
+    thurs = make_day("thursday", 'z', 7);
+    fri = make_day("friday", 'u', 300);
 
-    object * thurs = malloc( sizeof(object) );
-    letter = "z";
-    thurs->letter = malloc( sizeof(char) );
-    *(thurs->letter) = *letter;
-    thurs->number = 7;
+    print_struct(wed);
+    print_struct(thurs);
+    print_struct(fri);
 
-    printf("wednesday sponsored by: "); printobj(wed);
-    printf("thursday sponsored by: "); printobj(thurs);
-
-    destroy(wed); destroy(thurs);
-
+    destroy(thurs);
+    destroy(wed);
+    destroy(fri);
 
     return 0;
 }
 
-void copy(object * source, object * dest) {
+/* allocates and populates a sponsorships structure and returns a pointer to it */
+sponsorships * make_day(char * day, char letter, int number) {
+    sponsorships * spons;
+    spons = malloc( sizeof(sponsorships) );
+
+    spons->day = day;
+    spons->letter = letter;
+    spons->number = number;
+
+    return spons;
+}
+
+/* copies the sponsorship data from one day to another */
+void copy_struct(sponsorships * source, sponsorships * dest) {
+    dest->day = source->day;
     dest->letter = source->letter;
     dest->number = source->number;
 }
 
-void destroy(object * source) {
-    free(source->letter);
+/* deallocates sponsorship data */
+void destroy(sponsorships * source) {
+    free(source->day);
     free(source);
 }
 
-void printobj(object * curobj) {
-    printf("the letter %c and the number %d\n", *(curobj->letter), curobj->number);
+void print_struct(sponsorships * cur_spons) {
+    printf("%s is brought to you by the letter %c and the number %d\n",
+            cur_spons->day, cur_spons->letter, cur_spons->number);
 }
