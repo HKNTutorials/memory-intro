@@ -33,9 +33,9 @@ void print_list(mylist_t* list)
     int i;
     for (i = 0; i < list->length; i++)
     {
-		// This will print an unnecessary space for the last element of the
-		// array. But it doesn't really matter, since we'll stick a newline
-		// after it anyway.
+        // This will print an unnecessary space for the last element of the
+        // array. But it doesn't really matter, since we'll stick a newline
+        // after it anyway.
 
         printf("%d ", list->myarray[i]);
     }
@@ -62,7 +62,7 @@ int main(int argv, char* argc[])
     int new_size;
     int old_size;
     do {
-		printf("What should we resize the list to? (enter a negative value to exit)\n");
+        printf("What should we resize the list to? (enter a negative value to exit)\n");
         scanf("%d", &new_size);
         
         if (new_size >= 0)
