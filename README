@@ -1,6 +1,8 @@
 hkn-debug-tutorial-2-spring-12
 ==============================
 
-Code and Slides for HKN's second debugging tutorial for April 28th, 2012
+Code and Slides for HKN's second debugging tutorial for December 2, 2012.
+
+This tutorial is meant to teach how to debug more complicated bugs such as those arising from misuse of pointers and dynamically allocated memory.
 
 
