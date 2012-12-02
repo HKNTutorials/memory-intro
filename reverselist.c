@@ -4,8 +4,8 @@
 // A simple struct the represents a node of a linked list.
 typedef struct list_node
 {
-    int element;
     struct list_node* next;
+    int element;
 } list_node_t;
 
 /**
@@ -19,22 +19,20 @@ typedef struct list_node
  */
 void* make_linked_list(int* array, int length)
 {
-    list_node_t* head = (list_node_t *) malloc(sizeof(list_node_t));
+    list_node_t* head = (list_node_t *) malloc(sizeof(int));
     list_node_t* next_node = head;
 
     int i;
     for (i = 0; i < length; i++)
     {
+        next_node->next = (list_node_t*) malloc(sizeof(int));
         next_node->element = array[i];
-        if (i == length)
+        // make the tail of the list point to NULL
+        if (i == length - 1)
         {
             next_node->next = NULL;
         }
-        else
-        {
-            next_node->next = (list_node_t*) malloc(sizeof(list_node_t));
-            next_node = next_node->next;
-        }
+        next_node = next_node->next;
     }
 
     return head;
@@ -53,7 +51,9 @@ list_node_t* reverse_linked_list(list_node_t* head)
     list_node_t *new_next_node;
 
     if (head == NULL)
+    {
         return NULL;
+    }
 
     last_node = head;
     curr_node = head->next;
@@ -76,13 +76,13 @@ list_node_t* reverse_linked_list(list_node_t* head)
  */
 void print_linked_list(list_node_t* head)
 {
-    list_node_t* next_node = head;
+    list_node_t* curr_node = head;
 
     int i;
-    for (i = 0; next_node != NULL; i++)
+    for (i = 0; curr_node->next != NULL; i++)
     {
-        printf("Element #%d: %d\n", i, next_node->element);
-        next_node = next_node->next;
+        printf("Element #%d: %d\n", i, curr_node->element);
+        curr_node = curr_node->next;
     }
 }
 
