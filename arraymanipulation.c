@@ -8,12 +8,15 @@ typedef struct mylist
     int length;
 } mylist_t;
 
+/**
+ * Resize a list to a newlength. 
+ */
 void resize(mylist_t* list, int newlength)
 {
     int* oldarray = list->myarray;
 
-    list->myarray = malloc(sizeof(int)*newlength);
-    memcpy(list->myarray, oldarray, list->length*sizeof(int));
+    list->myarray = (int *) malloc(sizeof(int) * newlength);
+    memcpy(list->myarray, oldarray, list->length * sizeof(int));
 
     list->length = newlength;
 
@@ -28,12 +31,11 @@ void free_list(mylist_t* list)
 void print_list(mylist_t* list)
 {
     int i;
-
-    for (i=0; i < list->length; i++)
+    for (i = 0; i < list->length; i++)
     {
-        //This will print an unnecessary space for the last element of the
-        //array.  But it doesn't really matter, since we'll stick a newline
-        //after it anyway.
+        // This will print an unnecessary space for the last element of the
+        // array. But it doesn't really matter, since we'll stick a newline
+        // after it anyway.
 
         printf("%d ", list->myarray[i]);
     }
@@ -45,13 +47,13 @@ int main(int argv, char* argc[])
 {
     mylist_t the_list;
     the_list.length = 10;
-    the_list.myarray = malloc(sizeof(int) * 10);
+    the_list.myarray = (int *) malloc(sizeof(int) * 10);
     int i;
 
     printf("Give me 10 integers!\n");
-    for (i=0; i < 10; i++)
+    for (i = 0; i < 10; i++)
     {
-        scanf("%d", the_list.myarray+i);
+        scanf("%d", the_list.myarray + i);
     }
 
     printf("Your list now is ");
