@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Count the number of words in a null-terminated string.
+// Count the number of words in a null-terminated string. Intended to handle
+// only the space character as whitespace and only a single whitespace
+// character between words.
 int wordcount(char *str) {
 	int words = 0;
 	while (*str++ != '\0') {
@@ -23,11 +25,9 @@ int main() {
 		"never gonna run around",
 		"and desert you.",
 		"should I use GDB to debug this? never gonna make you cry",
-		"it  must have something to do with whitespace   ",
+		"it must have something to do with whitespace",
 		"word",
 		"a couple words",
-		"way   too many    spaces between words",
-		"this uses\nseveral newline\nseparators and not\nspaces",
 		"On a bright summer day Princess starburst walked over to Storybelle to show her her pink star-shaped medallion with a yellow jewel and said \"never gonna say goodbye, never gonna tell a lie and hurt you\"",
 		};
 	int i;
