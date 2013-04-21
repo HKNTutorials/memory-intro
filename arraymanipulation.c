@@ -30,7 +30,7 @@ void resize(mylist_t* list, int newlength)
  * Initialize a my_list_t struct (assumes list->myarray is uninitialized
  * and thus does not need to be freed)
  */
-void init_list(my_list_t* list, int length)
+void init_list(mylist_t* list, int length)
 {
     list->length = length;
     list->myarray = (int *) malloc(sizeof(int) * length);
