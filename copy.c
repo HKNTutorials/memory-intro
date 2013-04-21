@@ -17,7 +17,11 @@ void destroy(sponsorships * source);
  * Print out Sesame Street letters and numbers of the day, making
  * sure to delete your memory when you're done with it.
  *
- * this code is OK
+ * This code asks for a day, letter, and number, and then prints
+ * them out as "<day> is sponsored by the letter <letter> and the number <number>"
+ *
+ * this code should work, but doesn't because some of the helper
+ * functions are broken.
  */
 int main() {
     sponsorships *temp_day, *today;
