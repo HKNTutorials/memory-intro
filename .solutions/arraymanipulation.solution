@@ -1,0 +1,37 @@
+diff --git a/arraymanipulation.c b/arraymanipulation.c
+index ad6f93a..ce2b02e 100644
+--- a/arraymanipulation.c
++++ b/arraymanipulation.c
+@@ -8,6 +8,14 @@ typedef struct mylist
+     int length;
+ } mylist_t;
+ 
++int min(int a, int b)
++{
++    if (a < b)
++        return a;
++    else
++        return b;
++}
++
+ /**
+  * Resize a list to a newlength. 
+  */
+@@ -18,7 +26,7 @@ void resize(mylist_t* list, int newlength)
+     /* allocate space for a new array */
+     list->myarray = (int *) malloc(sizeof(int) * newlength);
+     /* copy over the old values to the new array */
+-    memcpy(list->myarray, oldarray, list->length * sizeof(int));
++    memcpy(list->myarray, oldarray, min(list->length, newlength) * sizeof(int));
+ 
+     list->length = newlength;
+ 
+@@ -86,7 +94,7 @@ int main(int argv, char* argc[])
+     // the new size is smaller, the_list is truncated to the smaller
+     // size.
+     int new_size;
+-    int old_size;
++    int old_size = the_list.length;
+     do {
+         // ask for a new size for the_list
+         printf("What should we resize the list to? (enter a negative value to exit)\n");

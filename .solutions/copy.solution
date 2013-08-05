@@ -1,0 +1,15 @@
+diff --git a/copy.c b/copy.c
+index 3a34896..6415081 100644
+--- a/copy.c
++++ b/copy.c
+@@ -48,7 +48,9 @@ sponsorships * init_day() {
+ }
+ 
+ void copy_struct(sponsorships * dest, sponsorships * source) {
+-    dest->day = source->day;
++    int len = strlen(source->day)*sizeof(char);
++    dest->day = (char*) malloc(len);
++    memcpy(dest->day, source->day, len); 
+     dest->letter = source->letter;
+     dest->number = source->number;
+ }

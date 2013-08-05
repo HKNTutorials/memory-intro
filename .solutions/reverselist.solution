@@ -1,0 +1,43 @@
+diff --git a/reverselist.c b/reverselist.c
+index 5702303..1bdf314 100644
+--- a/reverselist.c
++++ b/reverselist.c
+@@ -19,17 +19,18 @@ typedef struct list_node
+  */
+ void* make_linked_list(int* array, int length)
+ {
+-    list_node_t* head = (list_node_t *) malloc(sizeof(int));
++    list_node_t* head = (list_node_t *) malloc(sizeof(list_node_t));
+     list_node_t* next_node = head;
+ 
+     int i;
+     for (i = 0; i < length; i++)
+     {
+-        next_node->next = (list_node_t*) malloc(sizeof(int));
++        next_node->next = (list_node_t*) malloc(sizeof(list_node_t));
+         next_node->element = array[i];
+         // make the tail of the list point to NULL
+         if (i == length - 1)
+         {
++            free(next_node->next);
+             next_node->next = NULL;
+         }
+         next_node = next_node->next;
+@@ -59,7 +60,7 @@ list_node_t* reverse_linked_list(list_node_t* head)
+     curr_node = head->next;
+     last_node->next = NULL;
+ 
+-    while (curr_node->next != NULL)
++    while (curr_node != NULL)
+     {
+         new_next_node = curr_node->next;
+         curr_node->next = last_node;
+@@ -79,7 +80,7 @@ void print_linked_list(list_node_t* head)
+     list_node_t* curr_node = head;
+ 
+     int i;
+-    for (i = 0; curr_node->next != NULL; i++)
++    for (i = 0; curr_node != NULL; i++)
+     {
+         printf("Element #%d: %d\n", i, curr_node->element);
+         curr_node = curr_node->next;

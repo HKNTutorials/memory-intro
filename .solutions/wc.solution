@@ -1,0 +1,13 @@
+diff --git a/wc.c b/wc.c
+index a322403..e56b23a 100644
+--- a/wc.c
++++ b/wc.c
+@@ -7,7 +7,7 @@
+ int wordcount(char *str) {
+ 	int words = 0;
+ 	while (*str++ != '\0') {
+-		if (*str++ == ' ') {
++		if (*str == ' ') {
+ 			words++;
+ 		}
+ 	}
